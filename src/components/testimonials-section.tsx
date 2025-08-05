@@ -26,7 +26,7 @@ const testimonials = [
 ];
 
 const AvatarPlaceholder = ({ name }: { name: string }) => (
-    <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center border-2 border-primary/50">
+    <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center border-2 border-primary/50 flex-shrink-0">
         <span className="text-2xl font-bold text-primary font-headline">{name.charAt(0)}</span>
     </div>
 )
@@ -36,7 +36,7 @@ export function TestimonialsSection() {
     <section id="testimonials" className="py-20 md:py-32 bg-secondary">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center text-center mb-12">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl font-headline">What My Clients Say</h2>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">What My Clients Say</h2>
           <p className="max-w-[700px] text-muted-foreground md:text-lg mt-2">
             Testimonials from people I've had the pleasure to work with.
           </p>
@@ -51,10 +51,10 @@ export function TestimonialsSection() {
           <CarouselContent>
             {testimonials.map((testimonial, index) => (
               <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/1">
-                <div className="p-1">
-                  <Card className="bg-card/50 backdrop-blur-sm border-border/50">
-                    <CardContent className="flex flex-col items-center text-center p-8 space-y-6">
-                      <p className="text-xl italic font-serif text-foreground/80">&ldquo;{testimonial.quote}&rdquo;</p>
+                <div className="p-1 h-full">
+                  <Card className="bg-card/50 backdrop-blur-sm border-border/50 h-full">
+                    <CardContent className="flex flex-col items-center justify-center text-center p-8 space-y-6 h-full">
+                      <p className="text-xl italic font-serif text-foreground/80 flex-grow">&ldquo;{testimonial.quote}&rdquo;</p>
                       <div className="flex flex-col items-center gap-2 mt-4">
                         <AvatarPlaceholder name={testimonial.name} />
                         <div>

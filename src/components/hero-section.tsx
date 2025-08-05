@@ -49,7 +49,7 @@ const GlitchText = ({ text, className }: { text: string, className?: string }) =
         variants={characterAnimation}
         className="inline-block"
       >
-        {char === " " ? "\u00A0" : char}
+        {char === " " ? " " : char}
       </motion.span>
     ))}
   </motion.h1>
@@ -65,16 +65,16 @@ export function HeroSection() {
       <div className="absolute inset-0 z-0 bg-gradient-to-br from-background via-indigo-900/20 to-cyan-900/30 bg-[length:200%_200%] animate-gradient" />
       <div className="absolute inset-0 z-0 bg-grid-pattern opacity-10" />
       
-      <div className="z-10 container px-4 md:px-6">
+      <div className="relative z-10 container px-4 md:px-6">
         <div className="flex flex-col items-center space-y-8 text-center">
-            <GlitchText text="Ahmed Sanad" className="text-5xl font-bold tracking-tighter sm:text-6xl md:text-7xl lg:text-8xl font-headline" />
+            <GlitchText text="Ahmed Sanad" className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl font-headline drop-shadow-2xl" />
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 0.8 }}
-            className="mx-auto max-w-[700px] text-muted-foreground md:text-xl lg:text-2xl font-body"
+            className="mx-auto max-w-[700px] text-muted-foreground md:text-xl lg:text-2xl font-body drop-shadow-lg"
           >
-            Creative Technologist &middot; System Architect &middot; Brand Strategist
+            Creative Technologist · System Architect · Brand Strategist
           </motion.p>
           <div className="space-x-4">
             <motion.div

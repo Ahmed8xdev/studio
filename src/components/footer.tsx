@@ -16,10 +16,10 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-secondary/50">
-      <div className="container mx-auto px-4 md:px-6 py-8">
+    <footer className="bg-secondary/50 py-8">
+      <div className="container mx-auto px-4 md:px-6">
         <Separator className="mb-8 bg-border/50" />
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
             <div className="flex-1 flex justify-center md:justify-start">
                  <Signature />
             </div>
@@ -43,7 +43,7 @@ export function Footer() {
             </div>
 
             <div className="flex-1 flex justify-center md:justify-end">
-                <p className="text-sm text-muted-foreground text-center md:text-right">
+                <p className="text-sm text-muted-foreground">
                     &copy; {currentYear} Ahmed Sanad. All rights reserved.
                 </p>
             </div>

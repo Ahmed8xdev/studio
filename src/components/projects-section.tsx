@@ -40,18 +40,18 @@ export function ProjectsSection() {
     <section id="projects" className="py-20 md:py-32">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center text-center mb-12">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl font-headline">Featured Projects</h2>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">Featured Projects</h2>
           <p className="max-w-[700px] text-muted-foreground md:text-lg mt-2">
             A selection of projects that showcase my skills and passion.
           </p>
         </div>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => (
-            <Card key={project.title} className="group flex flex-col overflow-hidden hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 ease-in-out border-border/50 hover:-translate-y-2">
+            <Card key={project.title} className="group flex flex-col overflow-hidden hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 ease-in-out border-border/50 hover:-translate-y-2 h-full">
                <CardHeader>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-start">
                     <CardTitle>{project.title}</CardTitle>
-                    <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                    <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
                 </div>
                 <p className="text-muted-foreground text-sm pt-2">{project.description}</p>
               </CardHeader>
