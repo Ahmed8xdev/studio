@@ -1,43 +1,37 @@
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
+import { ArrowUpRight } from "lucide-react";
 
 const projects = [
   {
     title: "QuantumLeap CRM",
     tech: ["Next.js", "Tailwind CSS", "Firebase"],
-    imageUrl: "https://placehold.co/600x400.png",
-    aiHint: "dashboard interface"
+    description: "A cutting-edge CRM platform designed for quantum computing startups.",
   },
   {
     title: "Stellar eCommerce",
     tech: ["React", "Node.js", "PostgreSQL"],
-    imageUrl: "https://placehold.co/600x400.png",
-    aiHint: "ecommerce website"
+    description: "An interstellar-themed e-commerce site for futuristic products.",
   },
   {
     title: "AutomateAI",
     tech: ["Python", "Flask", "OpenAI API"],
-    imageUrl: "https://placehold.co/600x400.png",
-    aiHint: "robot technology"
+    description: "An AI-powered automation engine for complex business workflows.",
   },
   {
     title: "BrandSphere",
     tech: ["Gatsby", "GraphQL", "Contentful"],
-    imageUrl: "https://placehold.co/600x400.png",
-    aiHint: "branding agency"
+    description: "A headless CMS-driven branding platform for digital agencies.",
   },
   {
     title: "ConnectUX Mobile",
     tech: ["React Native", "Figma", "Firebase"],
-    imageUrl: "https://placehold.co/600x400.png",
-    aiHint: "mobile app"
+    description: "A social networking app focused on connecting UX professionals.",
   },
   {
     title: "DataViz Pro",
     tech: ["D3.js", "React", "MongoDB"],
-    imageUrl: "https://placehold.co/600x400.png",
-    aiHint: "data visualization"
+    description: "An advanced data visualization tool for enterprise-level analytics.",
   },
 ];
 
@@ -53,23 +47,16 @@ export function ProjectsSection() {
         </div>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => (
-            <Card key={project.title} className="overflow-hidden group hover:shadow-xl transition-shadow duration-300">
-              <CardHeader className="p-0">
-                <div className="overflow-hidden">
-                  <Image
-                    src={project.imageUrl}
-                    alt={project.title}
-                    width={600}
-                    height={400}
-                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
-                    data-ai-hint={project.aiHint}
-                  />
+            <Card key={project.title} className="group flex flex-col overflow-hidden hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 ease-in-out border-border/50 hover:-translate-y-2">
+               <CardHeader>
+                <div className="flex justify-between items-center">
+                    <CardTitle>{project.title}</CardTitle>
+                    <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
                 </div>
+                <p className="text-muted-foreground text-sm pt-2">{project.description}</p>
               </CardHeader>
-              <CardContent className="p-6">
-                <CardTitle>{project.title}</CardTitle>
-              </CardContent>
-              <CardFooter className="p-6 pt-0">
+              <CardContent className="flex-grow"></CardContent>
+              <CardFooter>
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech) => (
                     <Badge key={tech} variant="secondary">{tech}</Badge>
