@@ -31,6 +31,7 @@ export function WhatsAppPopup() {
           className="bg-green-500 hover:bg-green-600 transition-colors rounded-full p-4 shadow-lg flex items-center justify-center"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
+          aria-label="Open WhatsApp Chat"
         >
           <WhatsAppIcon />
         </motion.button>
@@ -42,7 +43,7 @@ export function WhatsAppPopup() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
             onClick={() => setIsOpen(false)}
           >
             <motion.div
@@ -50,12 +51,13 @@ export function WhatsAppPopup() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              className="relative bg-card/80 border border-border/50 backdrop-blur-lg rounded-2xl shadow-2xl max-w-sm w-full mx-4 p-8 text-center"
+              className="relative bg-card/80 border border-border/50 backdrop-blur-lg rounded-2xl shadow-2xl max-w-sm w-full p-8 text-center flex flex-col items-center"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 onClick={() => setIsOpen(false)}
                 className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="Close popup"
               >
                 <X className="h-6 w-6" />
                 <span className="sr-only">Close</span>

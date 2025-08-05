@@ -5,8 +5,6 @@ import Link from "next/link";
 import { Separator } from "./ui/separator";
 
 const Signature = () => {
-    // Using a simpler text element for now to avoid issues with custom fonts in SVG.
-    // The glitch effect can be applied via CSS if desired.
     return (
         <div className="font-headline text-3xl font-bold text-foreground">
             Ahmed Sanad
