@@ -18,7 +18,7 @@ export default {
     extend: {
       fontFamily: {
         body: ['var(--font-inter)', 'sans-serif'],
-        headline: ['var(--font-inter)', 'sans-serif'],
+        headline: ['"Canela"', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -69,10 +69,29 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "gradient-animation": {
+          '0%': { 'background-position': '0% 50%' },
+          '50%': { 'background-position': '100% 50%' },
+          '100%': { 'background-position': '0% 50%' },
+        },
+        "glitch": {
+          '0%, 100%': { transform: 'translate(0, 0)', opacity: '1' },
+          '10%': { transform: 'translate(-2px, 2px)' },
+          '20%': { transform: 'translate(2px, -2px)' },
+          '30%': { transform: 'translate(-2px, -2px)', filter: 'blur(0.5px)' },
+          '40%': { transform: 'translate(2px, 2px)' },
+          '50%': { transform: 'translate(0, 0)', opacity: '0.8', filter: 'blur(0)' },
+          '60%': { transform: 'translate(-1px, 1px)' },
+          '70%': { transform: 'translate(1px, -1px)' },
+          '80%': { transform: 'translate(-1px, -1px)' },
+          '90%': { transform: 'translate(1px, 1px)' },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "gradient": "gradient-animation 15s ease infinite",
+        "glitch": "glitch 0.3s cubic-bezier(.25,.46,.45,.94) both",
       },
     },
   },

@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/canela');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -27,24 +29,24 @@
   }
  
   .dark {
-    --background: 210 20% 20%;
+    --background: 210 20% 5%;
     --foreground: 0 0% 98%;
-    --card: 210 20% 24%;
+    --card: 210 20% 10%;
     --card-foreground: 0 0% 98%;
-    --popover: 210 20% 12%;
+    --popover: 210 20% 5%;
     --popover-foreground: 0 0% 98%;
     --primary: 210 80% 40%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 210 20% 24%;
+    --secondary: 210 20% 12%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 210 20% 24%;
+    --muted: 210 20% 12%;
     --muted-foreground: 0 0% 63.9%;
     --accent: 180 60% 50%;
     --accent-foreground: 210 20% 10%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 210 20% 24%;
-    --input: 210 20% 24%;
+    --border: 210 20% 12%;
+    --input: 210 20% 12%;
     --ring: 210 80% 40%;
   }
 }
