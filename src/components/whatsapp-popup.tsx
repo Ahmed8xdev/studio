@@ -20,7 +20,7 @@ const WhatsAppIcon = () => (
 export function WhatsAppPopup() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const whatsAppUrl = `https://wa.me/201111356327?text=Hey%20Ahmed%2C%20I%20just%20checked%20your%20portfolio%20and%20would%20love%20to%20connect.`;
+  const whatsAppUrl = `https://wa.me/201111356327?text=Hello%20Ahmed%2C%20I%20just%20visited%20your%20portfolio%20and%20would%20like%20to%20connect.`;
 
   return (
     <>
