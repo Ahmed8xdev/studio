@@ -5,8 +5,9 @@ import { ThemeToggle } from "./theme-toggle"
 import { Button } from "./ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet"
 import { Menu } from "lucide-react"
-import { useState } from "react"
-import { motion } from "framer-motion"
+import { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { cn } from "@/lib/utils"
 
 const navLinks = [
     { href: "#services", label: "Services" },
@@ -17,9 +18,44 @@ const navLinks = [
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const isScrollingDown = currentScrollY > lastScrollY;
+
+      if (currentScrollY > 100) {
+        setIsScrolled(true);
+        if (isScrollingDown) {
+          setIsHidden(true);
+        } else {
+          setIsHidden(false);
+        }
+      } else {
+        setIsScrolled(false);
+        setIsHidden(false);
+      }
+      
+      lastScrollY = currentScrollY > 0 ? currentScrollY : 0;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-[80] w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <motion.header
+      className={cn(
+        "fixed top-0 z-[80] w-full transition-all duration-300 ease-in-out",
+        isScrolled && "border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+      )}
+      animate={{ y: isHidden ? "-100%" : "0%" }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+    >
       <div className="container flex h-16 items-center justify-between px-4 md:px-6">
         <Link href="/" className="mr-6 flex items-center space-x-2">
           <span className="font-bold text-lg font-headline">AS</span>
@@ -70,6 +106,6 @@ export function Header() {
             </div>
         </div>
       </div>
-    </header>
+    </motion.header>
   )
 }
