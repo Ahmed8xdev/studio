@@ -25,7 +25,7 @@ export function WhatsAppPopup() {
 
   return (
     <>
-      <div className="fixed bottom-6 right-6 z-50">
+      <div className="fixed bottom-6 right-6 z-[100]">
         <motion.button
           onClick={() => setIsOpen(true)}
           className="bg-green-500 hover:bg-green-600 transition-colors rounded-full p-4 shadow-lg flex items-center justify-center"
@@ -68,7 +68,7 @@ export function WhatsAppPopup() {
               </div>
 
               <h3 className="text-xl font-bold font-headline mb-4">Start a Conversation</h3>
-              <p className="text-muted-foreground mb-8">
+              <p className="text-muted-foreground mb-8 leading-relaxed">
                 Start a direct conversation with Ahmed Sanad. Let’s build your vision — fast, clean, and futuristic.
               </p>
               <Button asChild size="lg" className="w-full bg-green-500 hover:bg-green-600 text-white shadow-lg shadow-green-500/20">

@@ -36,8 +36,8 @@ export function TestimonialsSection() {
     <section id="testimonials" className="py-20 md:py-32 bg-secondary">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center text-center mb-12">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl font-headline">What My Clients Say</h2>
-          <p className="max-w-[700px] text-muted-foreground md:text-lg mt-2">
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight font-headline drop-shadow-lg">What My Clients Say</h2>
+          <p className="max-w-[700px] text-muted-foreground text-base md:text-lg leading-relaxed mt-4">
             Testimonials from people I've had the pleasure to work with.
           </p>
         </div>
@@ -54,7 +54,7 @@ export function TestimonialsSection() {
                 <div className="p-1 h-full">
                   <Card className="bg-card/50 backdrop-blur-sm border-border/50 h-full">
                     <CardContent className="flex flex-col items-center justify-center text-center p-8 space-y-6 h-full">
-                      <p className="text-xl italic font-serif text-foreground/80 flex-grow">&ldquo;{testimonial.quote}&rdquo;</p>
+                      <p className="text-xl italic font-serif text-foreground/80 flex-grow leading-relaxed">&ldquo;{testimonial.quote}&rdquo;</p>
                       <div className="flex flex-col items-center gap-2 mt-4">
                         <AvatarPlaceholder name={testimonial.name} />
                         <div>

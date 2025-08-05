@@ -60,19 +60,19 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative h-[calc(100vh-4rem)] w-full flex items-center justify-center text-center overflow-hidden"
+      className="relative flex items-center justify-center w-full min-h-[calc(100vh-4rem)] text-center overflow-hidden py-16"
     >
       <div className="absolute inset-0 z-0 bg-gradient-to-br from-background via-indigo-900/20 to-cyan-900/30 bg-[length:200%_200%] animate-gradient" />
       <div className="absolute inset-0 z-0 bg-grid-pattern opacity-10" />
       
-      <div className="relative z-10 container px-4 md:px-6">
-        <div className="flex flex-col items-center space-y-8 text-center">
-            <GlitchText text="Ahmed Sanad" className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl font-headline drop-shadow-2xl" />
+      <div className="relative z-10 container mx-auto px-4 md:px-6">
+        <div className="flex flex-col items-center justify-center space-y-8 text-center">
+            <GlitchText text="Ahmed Sanad" className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight font-headline drop-shadow-2xl" />
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 0.8 }}
-            className="mx-auto max-w-[700px] text-muted-foreground md:text-xl lg:text-2xl font-body drop-shadow-lg"
+            className="mx-auto max-w-[700px] text-muted-foreground text-lg md:text-xl lg:text-2xl font-medium leading-relaxed drop-shadow-lg"
           >
             Creative Technologist · System Architect · Brand Strategist
           </motion.p>

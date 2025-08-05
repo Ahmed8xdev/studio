@@ -19,12 +19,12 @@ export function Footer() {
     <footer className="bg-secondary/50 py-8">
       <div className="container mx-auto px-4 md:px-6">
         <Separator className="mb-8 bg-border/50" />
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-center">
             <div className="flex-1 flex justify-center md:justify-start">
                  <Signature />
             </div>
           
-            <div className="flex items-center gap-4">
+            <div className="flex items-center justify-center gap-4">
                 <Button variant="ghost" size="icon" asChild>
                     <Link href="https://github.com/sanad-io" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                     <Github className="h-5 w-5 transition-transform hover:scale-110" />
