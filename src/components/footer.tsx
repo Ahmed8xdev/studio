@@ -1,4 +1,3 @@
-
 import { Github, Instagram, Linkedin } from "lucide-react";
 import { Button } from "./ui/button";
 import Link from "next/link";
@@ -19,7 +18,7 @@ export function Footer() {
     <footer className="bg-secondary/50 py-8">
       <div className="container mx-auto px-4 md:px-6">
         <Separator className="mb-8 bg-border/50" />
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-center">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
             <div className="flex-1 flex justify-center md:justify-start">
                  <Signature />
             </div>
