@@ -50,7 +50,7 @@ export function ContactSection() {
 
     if (result.success) {
       toast({
-        title: "Message Sent!",
+        title: "Demo preview only",
         description: result.message,
       });
       form.reset();
