@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { submitContactForm } from "@/app/actions";
+import { runContactSubmission } from "@/lib/contact-flow";
 import { useState } from "react";
 
 const formSchema = z.object({
@@ -44,23 +45,19 @@ export function ContactSection() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsSubmitting(true);
-    const result = await submitContactForm(values);
-    setIsSubmitting(false);
-
-    if (result.success) {
-      toast({
+    await runContactSubmission(values, submitContactForm, {
+      setSubmitting: setIsSubmitting,
+      notifySuccess: (message) => toast({
         title: "Demo preview only",
-        description: result.message,
-      });
-      form.reset();
-    } else {
-      toast({
+        description: message,
+      }),
+      notifyFailure: (message) => toast({
         variant: "destructive",
-        title: "Uh oh! Something went wrong.",
-        description: "There was a problem with your request. Please try again.",
-      });
-    }
+        title: "Could not complete the request",
+        description: message,
+      }),
+      reset: () => form.reset(),
+    });
   }
 
   return (
