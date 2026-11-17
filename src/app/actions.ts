@@ -20,7 +20,7 @@ export async function submitContactForm(data: z.infer<typeof formSchema>) {
   // This portfolio is currently a demo and has no email or message storage backend.
   // Do not claim a message was delivered until a real service is connected.
   return {
-    success: true,
-    message: "Demo preview only. Your input passed validation, but no message was sent or stored. Connect a contact service before publishing this as a live contact form.",
+    success: false,
+    message: "Demo preview only. No message was sent or stored. Please use the published contact links instead.",
   };
 }
