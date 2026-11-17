@@ -3,9 +3,9 @@
 import * as z from "zod";
 
 const formSchema = z.object({
-  name: z.string().trim().min(2),
-  email: z.string().trim().email(),
-  message: z.string().trim().min(10),
+  name: z.string().trim().min(2).max(100),
+  email: z.string().trim().email().max(254),
+  message: z.string().trim().min(10).max(4000),
 });
 
 export async function submitContactForm(data: z.infer<typeof formSchema>) {
