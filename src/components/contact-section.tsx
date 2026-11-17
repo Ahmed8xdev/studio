@@ -20,13 +20,13 @@ import { runContactSubmission } from "@/lib/contact-flow";
 import { useState } from "react";
 
 const formSchema = z.object({
-  name: z.string().min(2, {
+  name: z.string().trim().min(2, {
     message: "Name must be at least 2 characters.",
   }),
-  email: z.string().email({
+  email: z.string().trim().email({
     message: "Please enter a valid email address.",
   }),
-  message: z.string().min(10, {
+  message: z.string().trim().min(10, {
     message: "Message must be at least 10 characters.",
   }),
 });
