@@ -26,6 +26,12 @@ export function Header() {
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      // Keep the header and mobile navigation accessible while the sheet is open.
+      if (isOpen) {
+        setIsHidden(false);
+        lastScrollY = currentScrollY;
+        return;
+      }
       const isScrollingDown = currentScrollY > lastScrollY;
 
       if (currentScrollY > 100) {
@@ -45,7 +51,7 @@ export function Header() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isOpen]);
 
   return (
     <motion.header
@@ -73,7 +79,10 @@ export function Header() {
         <div className="flex items-center gap-2">
             <ThemeToggle />
             <div className="md:hidden">
-                <Sheet open={isOpen} onOpenChange={setIsOpen}>
+                <Sheet open={isOpen} onOpenChange={(open) => {
+                    setIsOpen(open);
+                    if (open) setIsHidden(false);
+                  }}>
                     <SheetTrigger asChild>
                         <Button variant="ghost" size="icon">
                             <Menu className="h-6 w-6" />
