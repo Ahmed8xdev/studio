@@ -26,6 +26,8 @@ export function WhatsAppPopup() {
   useEffect(() => {
     if (!isOpen) return;
     closeRef.current?.focus();
+    const oldOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         event.preventDefault();
@@ -41,6 +43,7 @@ export function WhatsAppPopup() {
     document.addEventListener('keydown', onKeyDown);
     return () => {
       document.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = oldOverflow;
       triggerRef.current?.focus();
     };
   }, [isOpen]);
@@ -76,6 +79,7 @@ export function WhatsAppPopup() {
               role="dialog"
               aria-modal="true"
               aria-labelledby="whatsapp-dialog-title"
+              aria-describedby="whatsapp-dialog-description"
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
@@ -98,7 +102,7 @@ export function WhatsAppPopup() {
               </div>
 
               <h3 id="whatsapp-dialog-title" className="text-xl font-bold font-headline mb-4">Start a Conversation</h3>
-              <p className="text-muted-foreground mb-8 leading-relaxed">
+              <p id="whatsapp-dialog-description" className="text-muted-foreground mb-8 leading-relaxed">
                 Start a direct conversation with Ahmed Sanad. Let’s build your vision — fast, clean, and futuristic.
               </p>
               <Button asChild size="lg" className="w-full bg-green-500 hover:bg-green-600 text-white shadow-lg shadow-green-500/20">
