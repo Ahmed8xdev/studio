@@ -6,7 +6,22 @@ import { Toaster } from '@/components/ui/toaster';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
+const siteOrigin = (() => {
+  const configured = process.env.NEXT_PUBLIC_SITE_URL;
+  if (!configured) return undefined;
+  try {
+    const url = new URL(configured);
+    if (url.protocol !== 'https:' || url.username || url.password ||
+        url.search || url.hash || url.pathname !== '/') return undefined;
+    return url.origin;
+  } catch {
+    return undefined;
+  }
+})();
+
+
 export const metadata: Metadata = {
+  metadataBase: siteOrigin ? new URL(siteOrigin) : undefined,
   title: 'Ahmed Sanad — Creative Technologist, System Architect, and Marketing Strategist',
   description:
     'The personal portfolio of Ahmed Sanad, showcasing expertise in system architecture, brand strategy, automation, and UI/UX design. Let\'s build the future together.',
@@ -14,16 +29,8 @@ export const metadata: Metadata = {
     title: 'Ahmed Sanad — Creative Technologist, System Architect, and Marketing Strategist',
     description:
       'The personal portfolio of Ahmed Sanad, showcasing expertise in system architecture, brand strategy, automation, and UI/UX design. Let\'s build the future together.',
-    url: 'https://sanad-portfolio.com',
+    url: siteOrigin,
     siteName: 'Sanad Portfolio',
-    images: [
-      {
-        url: 'https://placehold.co/1200x630.png',
-        width: 1200,
-        height: 630,
-        alt: 'Ahmed Sanad Portfolio',
-      },
-    ],
     locale: 'en_US',
     type: 'website',
   },
