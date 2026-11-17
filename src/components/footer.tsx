@@ -25,12 +25,12 @@ export function Footer() {
           
             <div className="flex items-center justify-center gap-4">
                 <Button variant="ghost" size="icon" asChild>
-                    <Link href="https://github.com/sanad-io" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <Link href="https://github.com/Ahmed8xdev" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                     <Github className="h-5 w-5 transition-transform hover:scale-110" />
                     </Link>
                 </Button>
                 <Button variant="ghost" size="icon" asChild>
-                    <Link href="https://www.linkedin.com/in/ahmed-mohamed-sa-605045204/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <Link href="https://www.linkedin.com/in/ahmed-mohamed-sanad-605045204/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                     <Linkedin className="h-5 w-5 transition-transform hover:scale-110" />
                     </Link>
                 </Button>
