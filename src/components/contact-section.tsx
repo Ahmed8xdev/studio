@@ -22,13 +22,13 @@ import { useState } from "react";
 const formSchema = z.object({
   name: z.string().trim().min(2, {
     message: "Name must be at least 2 characters.",
-  }),
+  }).max(100),
   email: z.string().trim().email({
     message: "Please enter a valid email address.",
-  }),
+  }).max(254),
   message: z.string().trim().min(10, {
     message: "Message must be at least 10 characters.",
-  }),
+  }).max(4000),
 });
 
 export function ContactSection() {
