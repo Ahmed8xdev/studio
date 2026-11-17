@@ -23,3 +23,11 @@ test('normalizes accidental whitespace around a valid email', async () => {
   assert.equal(result.success, false); // Demo has no real delivery backend.
   assert.match(result.message, /Demo preview only/);
 });
+
+test('rejects oversized messages before an email integration is used', async () => {
+  const result = await submitContactForm({
+    name: 'Alex User', email: 'alex@example.com', message: 'a'.repeat(4001)
+  });
+  assert.equal(result.success, false);
+  assert.match(result.message, /valid name/i);
+});
