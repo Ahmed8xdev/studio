@@ -53,7 +53,7 @@ export function ContactSection() {
       }),
       notifyFailure: (message) => toast({
         variant: "destructive",
-        title: "Could not complete the request",
+        title: "Message not sent",
         description: message,
       }),
       reset: () => form.reset(),
