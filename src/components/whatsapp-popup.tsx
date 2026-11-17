@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
@@ -19,6 +19,31 @@ const WhatsAppIcon = () => (
 
 export function WhatsAppPopup() {
   const [isOpen, setIsOpen] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    closeRef.current?.focus();
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        setIsOpen(false);
+      }
+      if (event.key !== 'Tab' || !dialogRef.current) return;
+      const controls = [...dialogRef.current.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')];
+      if (!controls.length) return;
+      const first = controls[0], last = controls[controls.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      triggerRef.current?.focus();
+    };
+  }, [isOpen]);
 
   const whatsAppUrl = `https://wa.me/201111356327?text=Hello%20Ahmed%2C%20I%20just%20visited%20your%20portfolio%20and%20would%20like%20to%20connect.`;
 
@@ -26,6 +51,7 @@ export function WhatsAppPopup() {
     <>
       <div className="fixed bottom-6 right-6 z-[100]">
         <motion.button
+          ref={triggerRef}
           onClick={() => setIsOpen(true)}
           className="bg-green-500 hover:bg-green-600 transition-colors rounded-full p-4 shadow-lg flex items-center justify-center"
           whileHover={{ scale: 1.1 }}
@@ -46,6 +72,10 @@ export function WhatsAppPopup() {
             onClick={() => setIsOpen(false)}
           >
             <motion.div
+              ref={dialogRef}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="whatsapp-dialog-title"
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
@@ -54,6 +84,7 @@ export function WhatsAppPopup() {
               onClick={(e) => e.stopPropagation()}
             >
               <button
+                ref={closeRef}
                 onClick={() => setIsOpen(false)}
                 className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"
                 aria-label="Close popup"
@@ -66,7 +97,7 @@ export function WhatsAppPopup() {
                   <WhatsAppIcon />
               </div>
 
-              <h3 className="text-xl font-bold font-headline mb-4">Start a Conversation</h3>
+              <h3 id="whatsapp-dialog-title" className="text-xl font-bold font-headline mb-4">Start a Conversation</h3>
               <p className="text-muted-foreground mb-8 leading-relaxed">
                 Start a direct conversation with Ahmed Sanad. Let’s build your vision — fast, clean, and futuristic.
               </p>
