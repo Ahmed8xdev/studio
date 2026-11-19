@@ -14,9 +14,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/hooks/use-toast";
-import { submitContactForm } from "@/app/actions";
-import { runContactSubmission } from "@/lib/contact-flow";
+import { buildContactWhatsAppDraft } from "@/lib/contact-whatsapp";
 import { useState } from "react";
 
 const formSchema = z.object({
@@ -32,8 +30,7 @@ const formSchema = z.object({
 });
 
 export function ContactSection() {
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [draftUrl, setDraftUrl] = useState<string | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -44,20 +41,9 @@ export function ContactSection() {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    await runContactSubmission(values, submitContactForm, {
-      setSubmitting: setIsSubmitting,
-      notifySuccess: (message) => toast({
-        title: "Demo preview only",
-        description: message,
-      }),
-      notifyFailure: (message) => toast({
-        variant: "destructive",
-        title: "Message not sent",
-        description: message,
-      }),
-      reset: () => form.reset(),
-    });
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    // The visitor decides when to open WhatsApp and send the prefilled message.
+    setDraftUrl(buildContactWhatsAppDraft(values));
   }
 
   return (
@@ -71,7 +57,7 @@ export function ContactSection() {
         </div>
         <div className="mx-auto max-w-xl">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <form onSubmit={form.handleSubmit(onSubmit)} onChange={() => setDraftUrl(null)} className="space-y-8">
               <FormField
                 control={form.control}
                 name="name"
@@ -111,9 +97,17 @@ export function ContactSection() {
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full" disabled={isSubmitting}>
-                {isSubmitting ? "Sending..." : "Send Message"}
+              <Button type="submit" className="w-full">
+                Prepare WhatsApp Message
               </Button>
+              {draftUrl && (
+                <div role="status" className="rounded-lg border border-border p-4 text-sm space-y-2">
+                  <p>Nothing has been sent yet. Open WhatsApp to review and send your message.</p>
+                  <a href={draftUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center font-semibold underline">
+                    Open WhatsApp to send
+                  </a>
+                </div>
+              )}
             </form>
           </Form>
         </div>

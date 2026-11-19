@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { X } from 'lucide-react';
+import { PORTFOLIO_WHATSAPP_NUMBER } from '@/lib/contact-whatsapp';
 
 const WhatsAppIcon = () => (
     <svg
@@ -48,7 +49,7 @@ export function WhatsAppPopup() {
     };
   }, [isOpen]);
 
-  const whatsAppUrl = `https://wa.me/201111356327?text=Hello%20Ahmed%2C%20I%20just%20visited%20your%20portfolio%20and%20would%20like%20to%20connect.`;
+  const whatsAppUrl = `https://wa.me/${PORTFOLIO_WHATSAPP_NUMBER}?text=Hello%20Ahmed%2C%20I%20just%20visited%20your%20portfolio%20and%20would%20like%20to%20connect.`;
 
   return (
     <>
