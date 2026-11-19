@@ -1,0 +1,31 @@
+name: Verify portfolio contact draft
+
+on:
+  pull_request:
+    branches: [master]
+    paths:
+      - 'src/components/contact-section.tsx'
+      - 'src/components/whatsapp-popup.tsx'
+      - 'src/lib/contact-whatsapp.ts'
+      - 'tests/contact-whatsapp.test.cjs'
+      - '.github/workflows/contact-whatsapp.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: node --test tests/contact-whatsapp.test.cjs
+      - run: npx tsc --noEmit --incremental false
+      - run: npm run build
